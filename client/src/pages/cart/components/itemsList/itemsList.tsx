@@ -1,16 +1,13 @@
-import { useSelector } from "react-redux";
-import { getCartItemsState } from "../../../../redux/cart/cartSlice";
 import * as ItemsListStyles from "./styles";
+import useCart from "../../../../hooks/useCart";
 
 export const ItemsList = () => {
-  // useSelector para pegar o estado do carrinho usando a const exportada do cartSlice
-  const items = useSelector(getCartItemsState);
-
+  const { cartItems } = useCart();
   return (
     <ItemsListStyles.Container>
-      {items.map((item) => (
+      {cartItems.map((item) => (
         <li key={item.id}>
-          {item.name} - R$ {item.price}
+          {item.title} - R$ {item.price}
         </li>
       ))}
     </ItemsListStyles.Container>
