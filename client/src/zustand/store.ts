@@ -15,6 +15,8 @@ export type Actions = {
   removeItemFromCart: (itemId: number) => void;
   removeFromWishlist: (itemId: number) => void;
   addToWishlist: (itemId: number) => void;
+  clearCart: () => void;
+  clearWishlist: () => void;
 };
 
 export const useCartStore = create<State & Actions>()((set) => ({
@@ -68,5 +70,13 @@ export const useCartStore = create<State & Actions>()((set) => ({
         cartItemsIds: state.cartItemsIds.filter((id) => id !== itemId),
       };
     });
+  },
+
+  clearCart: () => {
+    set({ cartItemsIds: [] });
+  },
+
+  clearWishlist: () => {
+    set({ wishListIds: [] });
   },
 }));
