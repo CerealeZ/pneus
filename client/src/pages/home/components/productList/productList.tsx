@@ -9,10 +9,9 @@ import {
   Text,
   Image,
   Box,
-  useToast,
 } from "@chakra-ui/react";
 
-import { AddIcon, StarIcon, ViewIcon } from "@chakra-ui/icons";
+import { StarIcon, ViewIcon } from "@chakra-ui/icons";
 import { IProduct } from "../../../../types/product";
 import useProducts from "../../../../hooks/useProducts";
 import useCart from "../../../../hooks/useCart";
@@ -45,8 +44,8 @@ export const ProductList = () => {
           <Product
             product={product}
             key={product.id}
-            onAddToCart={({ id }) => addItemToCart(id)}
-            onLike={({ id }) => addToWishlist(id)}
+            onAddToCart={addItemToCart}
+            onLike={addToWishlist}
             isFav={isInWishList}
           />
         );
@@ -63,46 +62,15 @@ const Product: React.FC<{
   onAddToCart: (product: IProduct) => void;
   onLike: (product: IProduct) => void;
   isFav?: boolean;
-}> = ({ product, onLike, onAddToCart, isFav }) => {
+}> = ({ product, onLike, isFav }) => {
   const { title, price, discountPercentage } = product;
 
   const discountedPrice = (price - price * (discountPercentage / 100)).toFixed(
     2
   );
 
-  const toast = useToast();
   const addToFav = () => {
-    if (isFav) {
-      toast({
-        title: ToastMessages.ALREADY_LIKED_TITLE,
-        isClosable: true,
-      });
-
-      return;
-    }
     onLike(product);
-    toast({
-      title: ToastMessages.ADDED_TO_FAV_TITLE,
-      isClosable: true,
-      description: ToastMessages.ADDED_TO_FAV_DESC.replace(
-        "{productName}",
-        title
-      ),
-      status: "success",
-    });
-  };
-
-  const addToCart = () => {
-    onAddToCart(product);
-    toast({
-      title: ToastMessages.ADDED_TO_CART_TITLE,
-      isClosable: true,
-      status: "success",
-      description: ToastMessages.ADDED_TO_CART_DESC.replace(
-        "{productName}",
-        title
-      ),
-    });
   };
 
   return (
@@ -136,9 +104,6 @@ const Product: React.FC<{
           <Button onClick={addToFav}>
             <StarIcon color={isFav ? "yellow.400" : "gray.300"}></StarIcon>
           </Button>
-          <Button onClick={addToCart}>
-            <AddIcon />
-          </Button>
 
           <Button as={Link} to={`/item/${product.id}`}>
             <ViewIcon />
@@ -148,11 +113,3 @@ const Product: React.FC<{
     </Card>
   );
 };
-
-enum ToastMessages {
-  ADDED_TO_FAV_TITLE = "Curtiu mesmo!",
-  ADDED_TO_FAV_DESC = "Seu item {productName} foi adicionado aos favoritos!",
-  ADDED_TO_CART_TITLE = "Adicionado ao carrinho!",
-  ADDED_TO_CART_DESC = "Seu item {productName} foi adicionado ao carrinho!",
-  ALREADY_LIKED_TITLE = "Opa! Você já curtiu isso.",
-}

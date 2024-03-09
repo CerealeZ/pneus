@@ -27,6 +27,7 @@ import {
 import { useRef, useState } from "react";
 import useWishlist from "../../hooks/useWishlist";
 import useCart from "../../hooks/useCart";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
@@ -38,10 +39,10 @@ export const Header = () => {
       <Spacer />
       <Flex gap={1}>
         <Button gap={1} onClick={() => setIsShoppingCartOpen(true)}>
-          Carrinho <ShoppingCartIcon />
+          <ShoppingCartIcon /> Carrinho
         </Button>
         <Button gap={1} onClick={() => setIsWishlistOpen(true)}>
-          Favoritos <StarIcon />
+          <StarIcon /> Desejos
         </Button>
       </Flex>
       <ShopingDrawer
@@ -86,7 +87,16 @@ const ShopingDrawer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                 <CardBody p={2}>
                   <Flex justifyContent={"space-between"}>
                     <Box>
-                      <Heading size="sm">{item.title}</Heading>
+                      <Heading
+                        onClick={() => {
+                          onClose();
+                        }}
+                        size="sm"
+                        as={Link}
+                        to={`/item/${item.id}`}
+                      >
+                        {item.title}
+                      </Heading>
                       <Text>Preço: R${item.price}</Text>
                     </Box>
                     <Box w={"fit-content"}>
@@ -171,7 +181,7 @@ const FavoritesDrawer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
         <DrawerBody display={"flex"} flexDirection={"column"} gap={2}>
           {isEmpty && (
             <Text align={"center"} fontWeight={"bold"} fontSize={"lg"}>
-              Você ainda nao tem itens na sua lista de desejos
+              Você ainda não tem itens na sua lista de desejos
             </Text>
           )}
 
@@ -186,7 +196,16 @@ const FavoritesDrawer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                   <CardBody p={2}>
                     <Flex justifyContent={"space-between"}>
                       <Box>
-                        <Heading size="sm">{item.title}</Heading>
+                        <Heading
+                          size="sm"
+                          as={Link}
+                          onClick={() => {
+                            onClose();
+                          }}
+                          to={`/item/${item.id}`}
+                        >
+                          {item.title}
+                        </Heading>
                         <Text>Preço: R${item.price}</Text>
                       </Box>
                       <Box w={"fit-content"}>
@@ -208,7 +227,7 @@ const FavoritesDrawer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                   >
                     <Button
                       isDisabled={isInCart}
-                      onClick={() => addItemToCart(item.id)}
+                      onClick={() => addItemToCart(item)}
                     >
                       Adicionar ao carrinho
                     </Button>
