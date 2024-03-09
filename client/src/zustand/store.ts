@@ -1,11 +1,21 @@
 import { create } from "zustand";
 import { IProduct } from "../types/product";
 import { products } from "./products.json";
+import { data as categories } from "./categories.json";
+import { pick } from "underscore";
+import { ProductQuery } from "../pages/home/components/search/search";
 
 type State = {
   items: IProduct[];
+  filteredItems: IProduct[];
+  categories: {
+    title: string;
+    value: string;
+    brands: { title: string; value: string }[];
+  }[];
   wishListIds: number[];
   cartItemsIds: number[];
+  filter: ProductQuery;
 };
 
 export type Actions = {
@@ -17,12 +27,17 @@ export type Actions = {
   addToWishlist: (itemId: number) => void;
   clearCart: () => void;
   clearWishlist: () => void;
+  setFilter: (filter: ProductQuery) => void;
+  clearFilters: () => void;
 };
 
 export const useCartStore = create<State & Actions>()((set) => ({
   items: products,
+  filteredItems: products,
+  categories,
   cartItemsIds: [],
   wishListIds: [],
+  filter: {},
 
   addItem: (newItem) =>
     set((state) => {
@@ -78,5 +93,14 @@ export const useCartStore = create<State & Actions>()((set) => ({
 
   clearWishlist: () => {
     set({ wishListIds: [] });
+  },
+
+  setFilter: (filter) => {
+    const filteredFilter = pick(filter, (value) => value);
+    set({ filter: filteredFilter });
+  },
+
+  clearFilters() {
+    set({ filter: {} });
   },
 }));
