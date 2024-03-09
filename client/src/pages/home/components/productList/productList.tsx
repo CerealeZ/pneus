@@ -9,6 +9,7 @@ import {
   Text,
   Image,
   Box,
+  Badge,
 } from "@chakra-ui/react";
 
 import { StarIcon, ViewIcon } from "@chakra-ui/icons";
@@ -63,7 +64,7 @@ const Product: React.FC<{
   onLike: (product: IProduct) => void;
   isFav?: boolean;
 }> = ({ product, onLike, isFav }) => {
-  const { title, price, discountPercentage } = product;
+  const { title, price, discountPercentage, category, brand, rating } = product;
 
   const discountedPrice = (price - price * (discountPercentage / 100)).toFixed(
     2
@@ -93,10 +94,17 @@ const Product: React.FC<{
       <Stack w={"full"}>
         <CardBody>
           <Heading size="md">{title}</Heading>
-          <Flex gap={2} alignItems={"baseline"}>
+          <Flex alignItems={"baseline"} flexDirection={"column"}>
             <Text fontSize={"2xl"}>R$ {discountedPrice}</Text>
-            <Text as={"del"}>R$ {price}</Text>
-            <Text color={"red.200"}>{discountPercentage}% OFF!</Text>
+            <Text>Valoração {rating} / 5</Text>
+            <Flex gap={2}>
+              <Text as={"del"}>R$ {price}</Text>
+              <Text color={"red.200"}>{discountPercentage}% OFF!</Text>
+            </Flex>
+            <Flex gap={2}>
+              <Badge colorScheme="teal">{category}</Badge>
+              <Badge colorScheme="teal">{brand}</Badge>
+            </Flex>
           </Flex>
         </CardBody>
 
