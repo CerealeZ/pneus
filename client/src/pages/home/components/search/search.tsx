@@ -99,6 +99,9 @@ export const Search = () => {
           placeholder={SearcherText.SEARCH_BAR_PLACEHOLDER}
           defaultValue={query.q}
           {...register("q")}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") applyFilters();
+          }}
         />
       </InputGroup>
 
