@@ -30,7 +30,7 @@ export default function useCart() {
     toast({
       title: ToastMessages.ADDED_TO_CART_TITLE,
       isClosable: true,
-      description: ToastMessages.ADDED_TO_FAV_DESC.replace(
+      description: ToastMessages.ADDED_TO_CART_DESC.replace(
         "{productName}",
         product.title
       ),
