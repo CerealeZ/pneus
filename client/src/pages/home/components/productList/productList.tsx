@@ -94,13 +94,13 @@ const Product: React.FC<{
       <Stack w={"full"}>
         <CardBody>
           <Heading size="md">{title}</Heading>
-          <Flex alignItems={"baseline"} flexDirection={"column"}>
-            <Text fontSize={"2xl"}>R$ {discountedPrice}</Text>
-            <Text>Valoração {rating} / 5</Text>
-            <Flex gap={2}>
+          <Flex flexDirection={"column"}>
+            <Flex gap={2} alignItems={"baseline"}>
+              <Text fontSize={"2xl"}>R$ {discountedPrice}</Text>
               <Text as={"del"}>R$ {price}</Text>
               <Text color={"red.200"}>{discountPercentage}% OFF!</Text>
             </Flex>
+            <Text>Valoração {rating} / 5</Text>
             <Flex gap={2}>
               <Badge colorScheme="teal">{category}</Badge>
               <Badge colorScheme="teal">{brand}</Badge>
