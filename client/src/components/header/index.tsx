@@ -81,37 +81,44 @@ const ShopingDrawer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
             </Text>
           )}
 
-          {cartItems.map((item) => (
-            <Card variant="outline" key={item.id}>
-              <Stack gap={2}>
-                <CardBody p={2}>
-                  <Flex justifyContent={"space-between"}>
-                    <Box>
-                      <Heading
-                        onClick={() => {
-                          onClose();
-                        }}
-                        size="sm"
-                        as={Link}
-                        to={`/item/${item.id}`}
-                      >
-                        {item.title}
-                      </Heading>
-                      <Text>Preço: R${item.price}</Text>
-                    </Box>
-                    <Box w={"fit-content"}>
-                      <Button
-                        onClick={() => removeItemFromCart(item.id)}
-                        variant={"ghost"}
-                      >
-                        <DeleteIcon color={"red"}></DeleteIcon>
-                      </Button>
-                    </Box>
-                  </Flex>
-                </CardBody>
-              </Stack>
-            </Card>
-          ))}
+          {cartItems.map((item) => {
+            const descountedPrice = (
+              item.price -
+              item.price * (item.discountPercentage / 100)
+            ).toFixed(2);
+
+            return (
+              <Card variant="outline" key={item.id}>
+                <Stack gap={2}>
+                  <CardBody p={2}>
+                    <Flex justifyContent={"space-between"}>
+                      <Box>
+                        <Heading
+                          onClick={() => {
+                            onClose();
+                          }}
+                          size="sm"
+                          as={Link}
+                          to={`/item/${item.id}`}
+                        >
+                          {item.title}
+                        </Heading>
+                        <Text>Preço: R${descountedPrice}</Text>
+                      </Box>
+                      <Box w={"fit-content"}>
+                        <Button
+                          onClick={() => removeItemFromCart(item.id)}
+                          variant={"ghost"}
+                        >
+                          <DeleteIcon color={"red"}></DeleteIcon>
+                        </Button>
+                      </Box>
+                    </Flex>
+                  </CardBody>
+                </Stack>
+              </Card>
+            );
+          })}
         </DrawerBody>
 
         <DrawerFooter gap={2}>
@@ -190,6 +197,11 @@ const FavoritesDrawer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
               (cartItem) => cartItem.id === item.id
             );
 
+            const descountedPrice = (
+              item.price -
+              (item.price * item.discountPercentage) / 100
+            ).toFixed(2);
+
             return (
               <Card variant="outline" key={item.id}>
                 <Stack gap={2}>
@@ -206,7 +218,7 @@ const FavoritesDrawer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                         >
                           {item.title}
                         </Heading>
-                        <Text>Preço: R${item.price}</Text>
+                        <Text>Preço: R${descountedPrice}</Text>
                       </Box>
                       <Box w={"fit-content"}>
                         <Button
