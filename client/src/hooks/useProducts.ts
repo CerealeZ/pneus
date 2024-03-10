@@ -20,6 +20,7 @@ export default function useProducts() {
   const getFilteredItems = useCallback(
     (...params: FilterParams) => {
       const [rawName, rawWhere, rawOptions, rawRanges] = params;
+      const trimmedName = rawName?.trim();
       const filteredWhere = pick(rawWhere, (value) => value);
       const filteredOptions = pick(rawOptions, (value) => value);
       const filteredRanges = pick(rawRanges, (value) => value);
@@ -28,7 +29,7 @@ export default function useProducts() {
       );
 
       return createFilter(products)(
-        rawName,
+        trimmedName,
         filteredWhere,
         { ...filteredOptions, sorting: filteredSorting },
         filteredRanges
