@@ -99,7 +99,7 @@ export default function ItemPage() {
         <Flex gap={2} alignSelf={"flex-end"}>
           <Button
             variant="solid"
-            colorScheme="purple"
+            colorScheme="orange"
             gap={1}
             onClick={() => addItemToCart(product)}
           >
@@ -108,12 +108,12 @@ export default function ItemPage() {
           </Button>
           <Button
             variant="solid"
-            colorScheme="purple"
+            colorScheme="orange"
             onClick={() => addToWishlist(product)}
             gap={1}
           >
             <StarIcon color={isInWishList ? "yellow.500" : "white"} />
-            {isInWishList ? "Favoritado" : "Favoritar"}
+            {isInWishList ? "Desejado" : "Desejar"}
           </Button>
         </Flex>
       </GridItem>

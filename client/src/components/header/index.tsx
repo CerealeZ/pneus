@@ -34,7 +34,7 @@ export const Header = () => {
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
 
   return (
-    <Flex bg={"purple.400"} alignItems={"baseline"} p={4}>
+    <Flex bg={"orange.500"} alignItems={"baseline"} p={4}>
       <Box></Box>
       <Spacer />
       <Flex gap={1}>
