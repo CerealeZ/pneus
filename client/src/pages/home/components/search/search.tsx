@@ -191,7 +191,7 @@ export const Search = () => {
                   </option>
                 ))}
             </Select>
-            <Text>Price</Text>
+            <Text>Preço</Text>
             <Stack direction={"row"}>
               <Box>
                 <Text>Min: </Text>
@@ -225,7 +225,7 @@ export const Search = () => {
               </Box>
             </Stack>
 
-            <Text>Discount</Text>
+            <Text>Desconto</Text>
             <Select
               placeholder={SearcherText.SELECT_DISCOUNT_PLACEHOLDER}
               value={form["min-discount"] || ""}
