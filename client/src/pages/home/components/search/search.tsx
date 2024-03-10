@@ -40,7 +40,13 @@ import {
 const BUTTON_WIDTH = "12";
 export const Search = () => {
   const [areOptionsOpen, setAreOptionsOpen] = useState(false);
-  const { categories, setFilter, filter: query, hasFilters } = useProducts();
+  const {
+    categories,
+    setFilter,
+    filter: query,
+    hasFilters,
+    clearFilters,
+  } = useProducts();
 
   const {
     register,
@@ -76,9 +82,9 @@ export const Search = () => {
   useEffect(
     function resetFilter() {
       if (hasFilters) return;
-      reset();
+      reset({});
     },
-    [hasFilters, reset]
+    [hasFilters, reset, query]
   );
 
   const getFilterBy = (by: SortableValue) => {
@@ -231,7 +237,7 @@ export const Search = () => {
           </DrawerBody>
 
           <DrawerFooter gap={2}>
-            <Button colorScheme="red" onClick={() => reset({})}>
+            <Button colorScheme="red" onClick={clearFilters}>
               Excluir filtros
             </Button>
             <Button
