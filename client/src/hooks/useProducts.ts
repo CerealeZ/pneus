@@ -3,6 +3,7 @@ import sortArray from "sort-array";
 import _, { pick, size } from "underscore";
 import { IProduct } from "../types/product";
 import { useCallback } from "react";
+import { SortableValue, Orders } from "../types/product";
 
 export default function useProducts() {
   const [products, categories, query, setFilter, clearFilters] = useCartStore(
@@ -71,12 +72,7 @@ export default function useProducts() {
 }
 
 type FilterParams = Parameters<ReturnType<typeof createFilter>>;
-export type Orders = "asc" | "desc";
 
-export type SortableValue = keyof Omit<
-  IProduct & { discountedTotal: number },
-  "images" | "title"
->;
 export type NumericValues = keyof Pick<
   IProduct & { discountedTotal: number },
   "price" | "rating" | "stock" | "discountPercentage" | "discountedTotal"
@@ -92,13 +88,6 @@ export const VALID_SORTABLE_VALUES: SortableValue[] = [
   "rating",
   "stock",
 ];
-
-// const NUMERIC_VALUES: NumericValues[] = [
-//   "discountPercentage",
-//   "price",
-//   "stock",
-//   "rating",
-// ];
 
 type Ranges = Record<NumericValues, { min?: number; max?: number }>;
 

@@ -27,15 +27,14 @@ import {
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import useProducts, {
-  Orders,
-  SortableValue,
-} from "../../../../hooks/useProducts";
+import useProducts from "../../../../hooks/useProducts";
 import {
   MagnifyGlassIcon,
   SortIcon,
   FilterIcon,
 } from "../../../../components/icons";
+import { ProductQuery } from "../../../../types/product";
+import { SortableValue, Orders } from "../../../../types/product";
 
 const BUTTON_WIDTH = "12";
 export const Search = () => {
@@ -263,29 +262,4 @@ enum SearcherText {
   SELECT_CATEGORY_PLACEHOLDER = "Selecione categoria...",
   SELECT_BRAND_PLACEHOLDER = "Selecione marca...",
   SELECT_DISCOUNT_PLACEHOLDER = "Selecione desconto...",
-}
-
-export interface ProductQuery {
-  q?: string;
-  sorting?: {
-    by: SortableValue;
-    order: Orders;
-  }[];
-  order?: Orders;
-  page?: number;
-  size?: number | string;
-  brand?: string;
-  category?: string;
-  discountPercentage?: number | string;
-  price?: number | string;
-  rating?: number | string;
-  stock?: number | string;
-  ["max-rating"]?: string | number;
-  ["min-rating"]?: string | number;
-  ["max-price"]?: string | number;
-  ["min-price"]?: string | number;
-  ["max-discount"]?: string | number;
-  ["min-discount"]?: string | number;
-  ["max-stock"]?: string | number;
-  ["min-stock"]?: string | number;
 }

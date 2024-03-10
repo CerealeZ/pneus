@@ -3,7 +3,7 @@ import { IProduct } from "../types/product";
 import { products } from "./products.json";
 import { data as categories } from "./categories.json";
 import { pick } from "underscore";
-import { ProductQuery } from "../pages/home/components/search/search";
+import { ProductQuery } from "../types/product";
 
 type State = {
   items: IProduct[];
