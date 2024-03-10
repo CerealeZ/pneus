@@ -36,6 +36,9 @@ export default function ItemPage() {
     return <div>Product not found</div>;
   }
 
+  const discountedPrice =
+    product.price - (product.price * product.discountPercentage) / 100;
+
   const isInWishList = checkIfInWishList(product);
   const isInCart = checkIfCart(product);
 
@@ -81,9 +84,13 @@ export default function ItemPage() {
       >
         <Box>
           <Heading>{product.title}</Heading>
-          <Text fontWeight={"bold"} fontSize={"2xl"}>
-            R$ {product.price}
-          </Text>
+          <Flex gap={2} alignItems={"baseline"}>
+            <Text fontWeight={"bold"} fontSize={"2xl"}>
+              R${discountedPrice.toFixed(2)}
+            </Text>
+            <Text as={"del"}>R$ {product.price}</Text>
+            <Text color={"red.200"}>{product.discountPercentage}% OFF!</Text>
+          </Flex>
 
           <Flex gap={2}>
             <Badge colorScheme="red">{foundCategory?.title}</Badge>
