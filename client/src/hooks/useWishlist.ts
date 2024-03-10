@@ -60,6 +60,6 @@ export default function useWishlist() {
 
 enum ToastMessages {
   ADDED_TO_FAV_TITLE = "Curtiu mesmo!",
-  ADDED_TO_FAV_DESC = "Seu item {productName} foi adicionado aos favoritos!",
+  ADDED_TO_FAV_DESC = "Seu item {productName} foi adicionado à lista de desejos!",
   ALREADY_LIKED_TITLE = "Opa! Você já curtiu isso.",
 }
