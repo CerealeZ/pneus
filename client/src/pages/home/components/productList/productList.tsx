@@ -113,7 +113,13 @@ const Product: React.FC<{
             <StarIcon color={isFav ? "yellow.400" : "gray.300"}></StarIcon>
           </Button>
 
-          <Button as={Link} to={`/item/${product.id}`}>
+          <Button
+            as={Link}
+            gap={2}
+            alignItems={"center"}
+            to={`/item/${product.id}`}
+          >
+            Ver produto
             <ViewIcon />
           </Button>
         </CardFooter>
