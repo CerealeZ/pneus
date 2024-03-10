@@ -46,7 +46,7 @@ export default function useProducts() {
       sorting: query.sorting,
     },
     {
-      price: {
+      discountedTotal: {
         min: query["min-price"] ? Number(query["min-price"]) : undefined,
         max: query["max-price"] ? Number(query["max-price"]) : undefined,
       },
@@ -73,10 +73,13 @@ export default function useProducts() {
 type FilterParams = Parameters<ReturnType<typeof createFilter>>;
 export type Orders = "asc" | "desc";
 
-export type SortableValue = keyof Omit<IProduct, "images" | "title">;
+export type SortableValue = keyof Omit<
+  IProduct & { discountedTotal: number },
+  "images" | "title"
+>;
 export type NumericValues = keyof Pick<
-  IProduct,
-  "price" | "rating" | "stock" | "discountPercentage"
+  IProduct & { discountedTotal: number },
+  "price" | "rating" | "stock" | "discountPercentage" | "discountedTotal"
 >;
 
 export const VALID_SORTABLE_VALUES: SortableValue[] = [
@@ -122,7 +125,11 @@ const createFilter =
     },
     ranges?: Partial<Ranges>
   ) => {
-    let searchedProducts = [...products];
+    let searchedProducts = products.map((product) => {
+      const discountedTotal =
+        product.price - (product.price * product.discountPercentage) / 100;
+      return { ...product, discountedTotal };
+    });
 
     if (name) {
       const NO_CASE_SENSITIVE = "i";

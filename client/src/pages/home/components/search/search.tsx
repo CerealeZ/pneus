@@ -118,8 +118,8 @@ export const Search = () => {
           <MenuOptionGroup
             title="Preço"
             type="radio"
-            value={getFilterBy("price")}
-            onChange={insertOrderQuery("price")}
+            value={getFilterBy("discountedTotal")}
+            onChange={insertOrderQuery("discountedTotal")}
           >
             <MenuItemOption value="">Nenhuma</MenuItemOption>
             <MenuItemOption value="asc">Ascendente</MenuItemOption>
