@@ -52,10 +52,7 @@ export default function useCart() {
 }
 
 enum ToastMessages {
-  ADDED_TO_FAV_TITLE = "Curtiu mesmo!",
-  ADDED_TO_FAV_DESC = "Seu item {productName} foi adicionado aos favoritos!",
   ADDED_TO_CART_TITLE = "Adicionado ao carrinho!",
   ADDED_TO_CART_DESC = "Seu item {productName} foi adicionado ao carrinho!",
-  ALREADY_LIKED_TITLE = "Opa! Você já curtiu isso.",
   ALREADY_IN_CART_TITLE = "Opa! você já adicionou este item ao carrinho.",
 }
