@@ -8,7 +8,7 @@ Este projeto é parte de um teste de desenvolvimento para uma plataforma de com�
 
 - Faça um fork do repositório do projeto.
 - Clone o repositório forkado para o seu ambiente local.
-- Utilize *`yarn dev`* para iniciar o frontend.
+- Utilize _`yarn dev`_ para iniciar o frontend.
 - Quando finalizado, envie o link do repositório para dev@acheipneus.com.br.
 
 - A utilização dos templates é opcional
@@ -50,8 +50,48 @@ Este projeto é parte de um teste de desenvolvimento para uma plataforma de com�
 
 ### Funcionamento da Aplicação
 
-[Adicione aqui uma descrição do funcionamento da aplicação, explicando como as funcionalidades são implementadas e como o usuário pode interagir com elas.]
+#### Test de basic store
+
+#### Bibliotecas importantes que usei, alem do React
+
+- Gerenciador de estado global: [Zustand](https://zustand-demo.pmnd.rs). A Zustand é uma biblioteca mais recente que a Redux e oferece uma solução formidável, muito semelhante à Redux, mas muito fácil de usar e nada complexa.
+- Interface de usuário: [Chakra-UI](https://chakra-ui.com): biblioteca usada devido à minha familiaridade com ela e à velocidade que ela oferece para criar interfaces de usuário.
+
+Todos os itens podem ser visualizados na página inicial, onde você pode ver uma versão resumida dos itens da loja.
+
+![Loja test](image.png)
+
+Você também pode pesquisar os objetos, filtrá-los e classificá-los como quiser.
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+Na lista de carrinhos e na lista de desejos, você pode ver os itens que adicionou ao carrinho e à lista de desejos. Você pode visualizá-los ou excluí-los. Você pode até mesmo adicionar ao carrinho os itens que estão em sua lista de compras.
+
+![alt text](image-3.png)
+
+![alt text](image-4.png)
+
+![alt text](image-5.png)
+
+![alt text](image-7.png)
+
+Você pode adicionar os objetos de que gostou no carrinho a partir dos detalhes do item. Você também pode adicioná-los à lista de desejos.
+
+![alt text](image-6.png)
 
 ## Autor
 
-[Seu nome ou informações de contato]
+### Nome completo
+
+Samuel Jose Haro
+
+### Dados de contato
+
+- [Email](mailto:samuelharo.dev@gmail.com)
+- [Linkedin](https://www.linkedin.com/in/cerealez/)
+- [GitHub](https://github.com/CerealeZ)
+- [Telefone](https://wa.me/5595981113248)
+
+# Muito obrigado pela oportunidade e estou ansioso para crescer com você.
